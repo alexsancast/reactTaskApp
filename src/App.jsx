@@ -4,18 +4,7 @@ import Button from "./components/Button"
 function App() {
   //Estados 
   const [newTaskName, setNewTaskName] = useState("")
-  const [taskItem, setTaskItem] = useState([{
-    id: 0,
-    titulo: "Mi primera tarea",
-    descripcion: "Esta es mi primera tarea"
-  },
-
-  {
-    id: 1,
-    titulo: "Mi segunda tarea",
-    descripcion: "Esta es mi segunda tarea"
-  }
-  ])
+  const [taskItem, setTaskItem] = useState([])
 
 
   //Funcciones
@@ -32,11 +21,18 @@ function App() {
   }
   //Guardar datos en el arreglo
   const handleBtnSave = () => {
-    setTaskItem([...taskItem, {
-      id: taskItem.length,
-      titulo: newTaskName,
-      descripcion: newTaskName
-    }])
+    if (!taskItem.find(task => task.titulo === newTaskName)) {
+      setTaskItem([...taskItem, {
+        id: taskItem.length,
+        titulo: newTaskName,
+        descripcion: newTaskName
+      }])
+
+
+
+    }
+
+    console.log(taskItem)
 
 
 
