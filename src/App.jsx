@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import Input from "./components/Input"
 import Button from "./components/Button"
 function App() {
@@ -13,7 +13,6 @@ function App() {
   }
   const handleSubmit = (e) => {
     e.preventDefault();
-    localStorage.setItem("name", newTaskName)
     setNewTaskName('')
 
 
@@ -37,6 +36,18 @@ function App() {
 
 
   }
+
+
+  //Cargar datos
+  useEffect(() => {
+
+    let data = localStorage.getItem("task")
+    if (data) {
+      setTaskItem(JSON.parse(data))
+    }
+
+  }, [])
+  useEffect(() => { localStorage.setItem("task", JSON.stringify(taskItem)) }, [taskItem])
 
 
 
