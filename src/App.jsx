@@ -16,7 +16,12 @@ function App() {
     setNewTaskName('')
 
 
+    //Cambiar estado de las tareas
 
+    const toggleTask = () => {
+      alert("Cambiando de estado")
+
+    }
   }
   //Guardar datos en el arreglo
   const handleBtnSave = () => {
@@ -24,16 +29,13 @@ function App() {
       setTaskItem([...taskItem, {
         id: taskItem.length,
         titulo: newTaskName,
-        descripcion: newTaskName
+        descripcion: newTaskName,
+        done: false
       }])
 
 
 
     }
-
-    console.log(taskItem)
-
-
 
   }
 
@@ -69,7 +71,7 @@ function App() {
 
       <div className="task">
 
-        {taskItem.map(task => <div key={task.id}> {task.titulo}</div>)}
+        {taskItem.map(task => <div key={task.id}> {task.titulo}  <input onChange={() => { console.log("Tarea realizada!") }} type="checkbox" checked={task.done} name="" id="" /></div>)}
 
 
       </div>
