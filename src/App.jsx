@@ -20,9 +20,12 @@ function App() {
   }
 
   //Cambiar estado de las tareas
+  const toggleTask = task => {
+    setTaskItem(
+      taskItem.map(t => (t.titulo == task.titulo) ? { ...t, done: !t.done } : t)
 
-  const toggleTask = () => {
-    alert("Cambiando de estado")
+    )
+
 
   }
   //Guardar datos en el arreglo
@@ -73,7 +76,7 @@ function App() {
 
       <div className="task">
 
-        {taskItem.map(task => <div key={task.id}> {task.titulo}  <input onChange={toggleTask} type="checkbox" checked={task.done} name="" id="" /></div>)}
+        {taskItem.map(task => <div key={task.id}> {task.titulo}  <input onChange={() => toggleTask(taskItem)} type="checkbox" checked={task.done} name="" id="" /></div>)}
 
 
       </div>
