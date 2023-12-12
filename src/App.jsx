@@ -7,6 +7,7 @@ function App() {
   const [taskItem, setTaskItem] = useState([])
 
 
+
   //Funcciones
   const handleInput = (e) => {
     setNewTaskName(e.target.value)
@@ -22,7 +23,7 @@ function App() {
   //Cambiar estado de las tareas
   const toggleTask = task => {
     setTaskItem(
-      taskItem.map(t => (t.titulo == task.titulo) ? { ...t, done: !t.done } : t)
+      taskItem.map(t => (t.id == task.id) ? { ...t, done: !t.done } : t)
 
     )
 
@@ -43,6 +44,8 @@ function App() {
     }
 
   }
+
+
 
 
   //Cargar datos
@@ -67,16 +70,28 @@ function App() {
 
         <Input newTaskName={newTaskName} HandleInput={handleInput} />
         <Button handleBtnSave={handleBtnSave} />
-
-
-
-
-
       </form>
 
-      <div className="task">
+      <div className="task-main">
 
-        {taskItem.map(task => <div key={task.id}> {task.titulo}  <input onChange={() => toggleTask(taskItem)} type="checkbox" checked={task.done} name="" id="" /></div>)}
+        <div className="task">
+          <h1>Tasks</h1>
+
+          {taskItem.filter((t) => t.done == false).map(task => <div key={task.id}> {task.titulo}  <input onChange={() => toggleTask(task)} type="checkbox" checked={task.done} name="" id="" /></div>)}
+
+
+        </div>
+
+        <div className="task-done">
+
+          <h1>Task Done</h1>
+
+          {taskItem.filter((t) => t.done == true).map(task => <div key={task.id}> {task.titulo}  <input onChange={() => toggleTask(task)} type="checkbox" checked={task.done} name="" id="" /></div>)}
+
+        </div>
+
+
+
 
 
       </div>
